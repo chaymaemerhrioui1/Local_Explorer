@@ -3,11 +3,10 @@ import requests
 
 app = Flask(__name__)
 
-# Votre clé API OpenWeatherMap
+# Mon clé API
 API_KEY_WEATHER = '6300935544b37fb72bf0339fb13fdd89'
 GOOGLE_PLACES_API_KEY = 'AIzaSyBm5iaWomPausHjMbXF-9vbl7VR-9rExGM'
 
-# Route pour afficher la page principale
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -15,7 +14,7 @@ def index():
 
 @app.route('/places', methods=['GET'])
 def get_places():
-    place_type = request.args.get('type')  # Type de lieu (e.g., 'restaurant', 'park')
+    place_type = request.args.get('type')  
     lat = request.args.get('lat')
     lon = request.args.get('lon')
 
@@ -45,10 +44,10 @@ def get_weather():
 
         # Envoyer la requête à OpenWeatherMap
         response = requests.get(weather_url)
-        response.raise_for_status()  # Provoque une exception si le statut HTTP n'est pas 200
+        response.raise_for_status() 
         return jsonify(response.json())
     except Exception as e:
-        print(f"Erreur lors de l'appel à l'API météo : {e}")  # Afficher l'erreur dans la console
+        print(f"Erreur lors de l'appel à l'API météo : {e}")  
         return jsonify({'error': 'Erreur lors de la récupération des données météo'}), 500
 
 # API pour générer des recommandations d'activités
