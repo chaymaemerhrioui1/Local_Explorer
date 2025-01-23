@@ -6,14 +6,12 @@ function displayCurrentTime() {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     timeElement.textContent = `${hours}:${minutes}`;
 }
-
-// Mettre à jour l'heure chaque seconde
 setInterval(displayCurrentTime, 1100);
 
 // Fonction pour afficher la carte avec la localisation actuelle
 function displayMapWithIframe(lat, lon) {
     const mapDiv = document.getElementById("map");
-    mapDiv.innerHTML = ""; // Effacer le contenu précédent
+    mapDiv.innerHTML = ""; 
     mapDiv.innerHTML = `<iframe width="700" height="300" src="https://maps.google.com/maps?q=${lat},${lon}&z=15&output=embed"></iframe>`;
     console.log(`Carte centrée sur : Latitude = ${lat}, Longitude = ${lon}`);
 }
@@ -29,7 +27,6 @@ function addMarkerToMap(map, lat, lng, title) {
 
 // Gestion du bouton "Trouver des activités"
 document.getElementById("get-activities").addEventListener("click", async () => {
-    // Afficher les sections cachées au clic sur le bouton
     document.getElementById("time-info").style.display = "block";
     document.getElementById("geo-info").style.display = "block";
     document.getElementById("weather-info").style.display = "block";
@@ -78,31 +75,30 @@ document.getElementById("get-activities").addEventListener("click", async () => 
                     // Récupérer l'heure actuelle
                     const currentTime = new Date().getHours();
 
-                    // Appeler l'API Flask pour obtenir les recommandations d'activités
                     const activitiesResponse = await fetch("/recommend", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             weather: weatherData.weather[0],
-                            time: currentTime, // Inclure l'heure actuelle
+                            time: currentTime, 
                         }),
                     });
                     const activities = await activitiesResponse.json();
 
-                    // Parcourir les activités et ajouter des lieux spécifiques pour certaines activités
+                    
                     for (const activity of activities) {
                         const li = document.createElement("li");
                         li.textContent = activity;
                         activitiesList.appendChild(li);
 
-                        // Ajouter des lieux spécifiques pour les activités
+                       
                         if (activity.includes("dîner romantique")) {
                             const placesResponse = await fetch(
                                 `/places?type=restaurant&lat=${lat}&lon=${lon}`
                             );
                             const placesData = await placesResponse.json();
 
-                            // Ajouter les 3 premiers restaurants à la liste et sur la carte
+                            
                             placesData.results.slice(0, 3).forEach((place) => {
                                 const placeLi = document.createElement("li");
                                 placeLi.textContent = `Restaurant : ${place.name}, Adresse : ${place.vicinity}`;
@@ -114,7 +110,7 @@ document.getElementById("get-activities").addEventListener("click", async () => 
                             );
                             const placesData = await placesResponse.json();
 
-                            // Ajouter les 3 premiers parcs à la liste
+                            
                             placesData.results.slice(0, 3).forEach((place) => {
                                 const placeLi = document.createElement("li");
                                 placeLi.textContent = `Parc : ${place.name}, Adresse : ${place.vicinity}`;
