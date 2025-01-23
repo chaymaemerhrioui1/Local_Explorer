@@ -53,10 +53,9 @@ def get_weather():
 # API pour générer des recommandations d'activités
 @app.route('/recommend', methods=['POST'])
 def recommend_activities():
-    # Récupérer les données envoyées par le frontend
     data = request.get_json()
     weather = data.get('weather', {})
-    time = data.get('time')  # Récupérer l'heure envoyée par le frontend
+    time = data.get('time')  
 
     # Logique de recommandation
     description = weather.get('description', '').lower()
@@ -82,7 +81,7 @@ def recommend_activities():
         else:
             activities = ['Explorez une librairie', 'Essayez une nouvelle recette chez vous']
 
-    else:  # Soirée (18h - Minuit) ou Nuit (Minuit - 6h)
+    else:  # Soirée ou Nuit 
         if 'clear' in description:
             activities = ['Regardez les étoiles', 'Prenez un dîner romantique']
         elif 'clouds' in description:
