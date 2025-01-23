@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: url('/static/images/METEO.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; /* Changer le texte en blanc pour plus de contraste */
+}
+
+h1 {
+    color: #fff; /* Texte du titre en blanc pour contraster avec l'image */
+}
+
+#app {
+    margin: 20px auto;
+    width: 95%;
+    max-width: 900px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour plus de lisibilité */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 15px; /* Coins arrondis pour un meilleur design */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#weather-info,#geo-info,#time-info , #activities-section {
+    margin-top: 20px;
+    text-align: left;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(233, 236, 239, 0.8); /* Fond semi-transparent pour plus de lisibilité */
+    border-radius: 5px;
+    color: #333; /* Couleur du texte adaptée pour un bon contraste */
+}
